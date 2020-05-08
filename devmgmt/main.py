@@ -1,5 +1,3 @@
-#last progress (27.04.2020 21:20) ==> modify-command successfully executed until call of devicelistcontains(key, val)
-from colorama import Fore, Back, Style
 from classes.iosupporter import IOSupporter
 from classes.switch import Switch
 import os
@@ -453,4 +451,4 @@ print("data_dir_path:", "\"" + data_dir_path + "\"")
 print("##############################################################################")
 
 while (continue_bool):
-    process_input(input(Fore.GREEN + prompt + Style.RESET_ALL))
+    process_input(input(prompt))
