@@ -1,5 +1,4 @@
-#last progress (27.04.2020 21:20) ==> modify-command successfully executed until call of devicelistcontains(key, val)
-from colorama import Fore, Back, Style
+#added a comment
 from classes.iosupporter import IOSupporter
 from classes.switch import Switch
 import os
@@ -223,6 +222,7 @@ def process_writeCommand(inputList):
                 iosupportobj.filename = data_file_path
                 prompt = inputList[1] + "->"
                 iosupportobj.writeDevices(devicelist)
+                iosupportobj.writeDevicesJSON(devicelist)
             iosupportobj.writeDevices(devicelist)
             print("File written successfully.")
             return True
@@ -453,4 +453,4 @@ print("data_dir_path:", "\"" + data_dir_path + "\"")
 print("##############################################################################")
 
 while (continue_bool):
-    process_input(input(Fore.GREEN + prompt + Style.RESET_ALL))
+    process_input(input(prompt))
