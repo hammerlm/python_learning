@@ -15,7 +15,12 @@ class IOSupporter:
             pickle.dump(switchobjList, wfile, protocol=pickle.HIGHEST_PROTOCOL)
 
     def loadDevicesJSON(self):
-        return False
+        with open(self.filename) as json_file:
+            data = json.load(json_file)
+            for d in data:
+                #idnum, serialnum, sys_macaddress, man_ipaddress, ip_subnetmask, hostname, numports
+                #switch_to_add = {"id", "snum", "sys_mac", "man_ip", "ip_subnetmask", "numports", "ports"}
+                switch_to_add = Switch()
         
     def writeDevicesJSON(self, switchobjList):
         adapted_switchobj_list = list()
