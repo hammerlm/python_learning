@@ -6,6 +6,10 @@ class SwitchPort:
         self.is_trunk = is_trunk
         self.native_vlan = native_vlan
 
+    def getDict(self):
+        returnval = {"mac" : self.mac, "is_trunk" : self.is_trunk, "native_vlan" : self.native_vlan}
+        return returnval
+
     def __str__(self):
         returnval = "mac=" + self.mac + ",is_trunk=" + str(self.is_trunk) + ",n_vlan=" + str(self.native_vlan)
         return returnval
@@ -27,5 +31,11 @@ class Switch(NetworkDevice):
         returnval = self.__str__() + "\nList of ports:\n"
         for key in self.ports:
             returnval = returnval + str(key) + "==>" + self.ports[key].__str__() + "\n"
+        return returnval
+
+    def getPortsAsDict(self):
+        returnval = {}
+        for switchport_key in self.ports:
+            returnval[switchport_key] = self.ports[switchport_key].getDict()
         return returnval
 

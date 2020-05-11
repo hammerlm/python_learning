@@ -20,9 +20,10 @@ class IOSupporter:
     def writeDevicesJSON(self, switchobjList):
         adapted_switchobj_list = list()
         for switchdev in switchobjList:
-            switch_to_add = {"id": switchdev.idnum, "snum": switchdev.snr, "sys_mac": switchdev.sys_mac, "man_ip": switchobj.man_ipaddress, "ip_subnetmask": switchdev.ip_subnetmask, "numports": switchdev.numports, "ports": switchdev.ports}
+            switch_to_add = {"id": switchdev.idnum, "snum": switchdev.snr, "sys_mac": switchdev.sys_mac, "man_ip": switchdev.man_ip, "ip_subnetmask": switchdev.ip_subnetmask, "numports": switchdev.numports, "ports" : switchdev.getPortsAsDict()}
             adapted_switchobj_list.append(switch_to_add)
-        print(adapted_switchobj_list)
+        with open(self.filename, 'w') as outfile:
+            json.dump(adapted_switchobj_list, outfile)
             
     def loadDevicesXML(self):
         return False

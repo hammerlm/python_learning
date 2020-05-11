@@ -221,10 +221,8 @@ def process_writeCommand(inputList):
                 data_file_path = data_dir_path + inputList[1]
                 iosupportobj.filename = data_file_path
                 prompt = inputList[1] + "->"
-                iosupportobj.writeDevices(devicelist)
-                #iosupportobj.writeDevicesJSON(devicelist)
-            iosupportobj.writeDevices(devicelist)
-            #iosupportobj.writeDevicesJSON(devicelist)
+            #iosupportobj.writeDevices(devicelist)
+            iosupportobj.writeDevicesJSON(devicelist)
             print("File written successfully.")
             return True
         except:
