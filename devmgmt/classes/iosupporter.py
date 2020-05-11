@@ -10,27 +10,17 @@ class IOSupporter:
             loaded_switchobjList = pickle.load(rfile)
             return loaded_switchobjList
 
+    def writeDevices(self, switchobjList):
+        with open(self.filename, 'wb') as wfile:
+            pickle.dump(switchobjList, wfile, protocol=pickle.HIGHEST_PROTOCOL)
+
     def loadDevicesJSON(self):
         return False
         
-        #self.sys_mac=sys_macaddress
-        #self.man_ip=man_ipaddress
-        #self.ip_subnetmask=ip_subnetmask
-        #self.hostname = hostname
-        #self.numports = numports
-        #self.ports = {}
-        #self.initPortCollection(numports) 
     def writeDevicesJSON(self, switchobjList):
         adapted_switchobj_list = list()
-        for switch in switchobjList:
-            switch_to_add = {
-                "id": switch.idnum, 
-                "snum": switch.snr, 
-                "sys_mac": switch.sys_mac, 
-                "man_ip": switch.man_ipaddress, 
-                "ip_subnetmask": switch.ip_subnetmask, 
-                "numports": switch.numports
-                "ports": switch.ports}
+        for switchdev in switchobjList:
+            switch_to_add = {"id": switchdev.idnum, "snum": switchdev.snr, "sys_mac": switchdev.sys_mac, "man_ip": switchobj.man_ipaddress, "ip_subnetmask": switchdev.ip_subnetmask, "numports": switchdev.numports, "ports": switchdev.ports}
             adapted_switchobj_list.append(switch_to_add)
         print(adapted_switchobj_list)
             
