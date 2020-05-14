@@ -192,7 +192,7 @@ def process_loadCommand(inputList):
             data_file_path = data_dir_path + inputList[1]
             iosupportobj.filename = data_file_path
             prompt = inputList[1] + "->"
-            devicelist = iosupportobj.loadDevices()
+            devicelist = iosupportobj.loadDevicesJSON()
             print("File loaded successfully.")
         except IOError:
             print("I/O error")
