@@ -223,7 +223,8 @@ def process_writeCommand(inputList):
                 prompt = inputList[1] + "->"
             #iosupportobj.writeDevices(devicelist)
             #iosupportobj.writeDevicesJSON(devicelist)
-            iosupportobj.writeDevicesYAML(devicelist)
+            #iosupportobj.writeDevicesYAML(devicelist)
+            iosupportobj.writeDevicesXML(devicelist)
             print("File written successfully.")
             return True
         except:

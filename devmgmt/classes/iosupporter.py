@@ -1,6 +1,7 @@
 import pickle
 import json
 import yaml
+from lxml import etree
 from classes.switch import Switch
 from classes.switch import SwitchPort
 
@@ -44,10 +45,52 @@ class IOSupporter:
             json.dump(adapted_switchobj_list, outfile)
             
     def loadDevicesXML(self):
-        return False
+        devices_tag = etree.parse(self.filename)
         
     def writeDevicesXML(self, switchobjList):
-        return False
+        devices_tag = etree.Element("devices")
+        for switchdev in switchobjList:
+            #switch_to_add =
+            #    {"id": switchdev.idnum,
+            #     "snum": switchdev.snr,
+            #     "sys_mac": switchdev.sys_mac,
+            #     "man_ip": switchdev.man_ip,
+            #     "ip_subnetmask": switchdev.ip_subnetmask,
+            #     "hostname" : switchdev.hostname,
+            #     "numports": switchdev.numports,
+            #     "ports" : switchdev.getPortsAsDict()}
+            switch_tag = etree.Element("switch", id=str(switchdev.idnum))
+            snum_tag = etree.Element("snum")
+            snum_tag.text = switchdev.snr
+            switch_tag.append(snum_tag)
+            sys_mac_tag = etree.Element("sys_mac")
+            sys_mac_tag.text = switchdev.sys_mac
+            switch_tag.append(sys_mac_tag)
+            man_ip_tag = etree.Element("man_ip")
+            man_ip_tag.text = switchdev.man_ip
+            switch_tag.append(man_ip_tag)
+            ip_subnetmask_tag = etree.Element("ip_subnetmask")
+            ip_subnetmask_tag.text = switchdev.ip_subnetmask
+            switch_tag.append(ip_subnetmask_tag)
+            hostname_tag = etree.Element("hostname")
+            hostname_tag.text = switchdev.hostname
+            switch_tag.append(hostname_tag)
+            numports_tag = etree.Element("numports")
+            numports_tag.text = str(switchdev.numports)
+            switch_tag.append(numports_tag)
+            ports_tag = etree.Element("ports")            
+            for port_key in switchdev.ports:
+                #SwitchPort-Init: mac, is_trunk, native_vlan
+                port_tag = etree.Element("port", pt=str(port_key))
+                ports_tag.append(port_tag)
+                port_tag.append(etree.Element("mac", mac=switchdev.ports[port_key].mac))
+                port_tag.append(etree.Element("is_trunk", is_trunk=str(switchdev.ports[port_key].is_trunk)))
+                port_tag.append(etree.Element("native_vlan", native_vlan=str(switchdev.ports[port_key].native_vlan)))
+            switch_tag.append(ports_tag)
+            devices_tag.append(switch_tag)
+        #print(etree.tostring(devices_tag, pretty_print=True).decode())
+        tree = etree.ElementTree(devices_tag)
+        tree.write(self.filename)        
 
     def loadDevicesYAML(self):
         with open(self.filename) as yaml_file:
