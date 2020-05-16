@@ -23,11 +23,11 @@ class IOSupporter:
             switches_loaded = json.load(json_file)
             switches_to_return = list()
             for s in switches_loaded:                
-                ports_to_add = list()
+                ports_to_add = {}
                 for port_key in s["ports"]:
                     #SwitchPort-Init: mac, is_trunk, native_vlan
                     #Format in json-file:{"mac" : self.mac, "is_trunk" : self.is_trunk, "native_vlan" : self.native_vlan}
-                    ports_to_add.append(SwitchPort(s["ports"][port_key]["mac"], s["ports"][port_key]["is_trunk"], s["ports"][port_key]["native_vlan"]))
+                    ports_to_add[port_key] = SwitchPort(s["ports"][port_key]["mac"], s["ports"][port_key]["is_trunk"], s["ports"][port_key]["native_vlan"])
                 #Switch-Init: idnum, serialnum, sys_macaddress, man_ipaddress, ip_subnetmask, hostname, numports
                 #Format in json-file: switch_to_add = {"id", "snum", "sys_mac", "man_ip", "ip_subnetmask", "numports", "ports"}
                 switch_to_add = Switch(s["id"], s["snum"], s["sys_mac"], s["man_ip"], s["ip_subnetmask"], s["hostname"], s["numports"])
@@ -45,7 +45,45 @@ class IOSupporter:
             json.dump(adapted_switchobj_list, outfile)
             
     def loadDevicesXML(self):
-        devices_tag = etree.parse(self.filename)
+        #Alternative
+        #with open(xmlFile) as fobj:
+        #    xml = fobj.read()
+        #root = etree.fromstring(xml)
+        tree = etree.parse(self.filename)
+        root = etree.fromstring(etree.tostring(tree).decode())
+        devicelist = list()
+        for switch in root.getchildren():
+            id_param = int(switch.attrib["id"])
+            for key in switch.getchildren():
+                if key.tag == "snum":
+                    snum_param = key.value
+                elif key.tag == "sys_mac":
+                    sys_mac_param = key.value
+                elif key.tag == "man_ip":
+                    man_ip_param = key.value
+                elif key.tag == "ip_subnetmask":
+                    ip_subnetmask_param = key.value
+                elif key.tag == "hostname":
+                    hostname_param = key.value
+                elif key.tag == "numports":
+                    numports_param = int(key.value)
+                elif key.tag == "ports":
+                    ports_dict_param = {}
+                    for key2 in key.getchildren():
+                        port_key_param = key2.attrib["pt"]
+                        if key2.tag == "mac":
+                            port_mac_param = key2.attrib["mac"]                            
+                        elif key2.tag == "is_trunk":
+                            port_is_trunk_param = bool(key2.attrib["is_trunk"])
+                        elif key2.tag == "native_vlan":
+                            port_native_vlan_param = int(key2.attrib["native_vlan"])
+                        #def __init__(self, mac, is_trunk, native_vlan):
+                        ports_dict_param[port_key_param] = SwitchPort(port_mac_param, port_is_trunk_param, port_native_vlan_param)
+            #def __init__(self, idnum, serialnum, sys_macaddress, man_ipaddress, ip_subnetmask, hostname, numports):
+            new_switch = Switch(id_param, snum_param, sys_mac_param, man_ip_param, ip_subnetmask_param, hostname_param, numports_param)
+            new_switch.ports = ports_dict_param
+            devicelist.append(new_switch)
+        return devicelist
         
     def writeDevicesXML(self, switchobjList):
         devices_tag = etree.Element("devices")
@@ -97,11 +135,11 @@ class IOSupporter:
             switches_loaded = yaml.full_load(yaml_file)
             switches_to_return = list()
             for s in switches_loaded:                
-                ports_to_add = list()
+                ports_to_add = {}
                 for port_key in s["ports"]:
                     #SwitchPort-Init: mac, is_trunk, native_vlan
                     #Format in json-file:{"mac" : self.mac, "is_trunk" : self.is_trunk, "native_vlan" : self.native_vlan}
-                    ports_to_add.append(SwitchPort(s["ports"][port_key]["mac"], s["ports"][port_key]["is_trunk"], s["ports"][port_key]["native_vlan"]))
+                    ports_to_add[port_key] = SwitchPort(s["ports"][port_key]["mac"], s["ports"][port_key]["is_trunk"], s["ports"][port_key]["native_vlan"])
                 #Switch-Init: idnum, serialnum, sys_macaddress, man_ipaddress, ip_subnetmask, hostname, numports
                 #Format in json-file: switch_to_add = {"id", "snum", "sys_mac", "man_ip", "ip_subnetmask", "numports", "ports"}
                 switch_to_add = Switch(s["id"], s["snum"], s["sys_mac"], s["man_ip"], s["ip_subnetmask"], s["hostname"], s["numports"])
