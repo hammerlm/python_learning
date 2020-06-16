@@ -54,29 +54,38 @@ class IOSupporter:
         devicelist = list()
         for switch in root.getchildren():
             id_param = int(switch.attrib["id"])
+            snum_param = ""
+            sys_mac_param = ""
+            man_ip_param = ""
+            ip_subnetmask_param = ""
+            numports_param = 0
+            ports_dict_param = {}
             for key in switch.getchildren():
                 if key.tag == "snum":
-                    snum_param = key.value
+                    snum_param = key.text
                 elif key.tag == "sys_mac":
-                    sys_mac_param = key.value
+                    sys_mac_param = key.text
                 elif key.tag == "man_ip":
-                    man_ip_param = key.value
+                    man_ip_param = key.text
                 elif key.tag == "ip_subnetmask":
-                    ip_subnetmask_param = key.value
+                    ip_subnetmask_param = key.text
                 elif key.tag == "hostname":
-                    hostname_param = key.value
+                    hostname_param = key.text
                 elif key.tag == "numports":
-                    numports_param = int(key.value)
-                elif key.tag == "ports":
-                    ports_dict_param = {}
+                    numports_param = int(key.text)
+                elif key.tag == "ports":                    
                     for key2 in key.getchildren():
                         port_key_param = key2.attrib["pt"]
-                        if key2.tag == "mac":
-                            port_mac_param = key2.attrib["mac"]                            
-                        elif key2.tag == "is_trunk":
-                            port_is_trunk_param = bool(key2.attrib["is_trunk"])
-                        elif key2.tag == "native_vlan":
-                            port_native_vlan_param = int(key2.attrib["native_vlan"])
+                        port_mac_param = ""
+                        port_is_trunk_param = ""
+                        port_native_vlan_param = 0
+                        for key3 in key2.getchildren():
+                            if key3.tag == "mac":
+                                port_mac_param = key3.attrib["mac"]                            
+                            elif key3.tag == "is_trunk":
+                                port_is_trunk_param = bool(key3.attrib["is_trunk"])
+                            elif key3.tag == "native_vlan":
+                                port_native_vlan_param = int(key3.attrib["native_vlan"])
                         #def __init__(self, mac, is_trunk, native_vlan):
                         ports_dict_param[port_key_param] = SwitchPort(port_mac_param, port_is_trunk_param, port_native_vlan_param)
             #def __init__(self, idnum, serialnum, sys_macaddress, man_ipaddress, ip_subnetmask, hostname, numports):
