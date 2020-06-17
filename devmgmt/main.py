@@ -52,18 +52,23 @@ def getDeviceByHostname(hostname):
 
 def evaluate_loadInput(inputList):
     global data_dir_path
-    filename = data_dir_path + inputList[1]
-    if os.path.exists(filename):
+    filename = data_dir_path + inputList[2]
+    if os.path.exists(filename) and inputList[1] in ["json", "yaml", "xml"]:
         return True
     else:
-        print("File:", inputList[1], "does not exist.")
+        print("Either File:", inputList[1], "does not exist or (json/yaml/xml)-Parameter-failure")
         return False
+    
 
 def evaluate_writeInput(inputList):
     global prompt
     if prompt == "-new->":
-        if inputList[1] == "this":
+        if inputList[2] == "this":
             print("File can't be saved with the 'this'-Parameter as this process is still unsaved.")
+            return False
+        if inputList[1] not in ["json", "yaml", "xml"]:
+            return False
+        else:
             return False
     return True
 
@@ -189,10 +194,15 @@ def process_loadCommand(inputList):
     print("processing loadcommand")
     if evaluate_loadInput(inputList):
         try:
-            data_file_path = data_dir_path + inputList[1]
+            data_file_path = data_dir_path + inputList[2]
             iosupportobj.filename = data_file_path
-            prompt = inputList[1] + "->"
-            devicelist = iosupportobj.loadDevicesXML()
+            prompt = inputList[2] + "->"
+            if(inputList[1] == "json"):
+                devicelist = iosupportobj.loadDevicesJSON()
+            elif(inputList[1] == "yaml"):
+                devicelist = iosupportobj.loadDevicesYAML()
+            elif(inputList[1] == "xml"):
+                devicelist = iosupportobj.loadDevicesXML()
             print("File loaded successfully.")
         except IOError:
             print("I/O error")
@@ -217,16 +227,20 @@ def process_writeCommand(inputList):
         filename_old = iosupportobj.filename
         prompt_old = prompt
         try:
-            if(inputList[1] != "this"):
-                data_file_path = data_dir_path + inputList[1]
+            if(inputList[2] != "this"):
+                data_file_path = data_dir_path + inputList[2]
                 iosupportobj.filename = data_file_path
-                prompt = inputList[1] + "->"
-            #iosupportobj.writeDevices(devicelist)
-            #iosupportobj.writeDevicesJSON(devicelist)
-            #iosupportobj.writeDevicesYAML(devicelist)
-            iosupportobj.writeDevicesXML(devicelist)
-            print("File written successfully.")
-            return True
+                prompt = inputList[2] + "->"
+                if(inputList[1] == "json"):
+                    iosupportobj.writeDevicesJSON(devicelist)
+                elif(inputList[1] == "yaml"):
+                    iosupportobj.writeDevicesYAML(devicelist)
+                elif(inputList[1] == "xml"):
+                    iosupportobj.writeDevicesXML(devicelist)
+                print("File written successfully.")
+                return True
+            else:
+                return False
         except:
             print("Unexpected error:", sys.exc_info()[0])
             data_file_path = data_file_path_old
@@ -362,9 +376,9 @@ def process_modifyCommand(inputList):
 def process_helpCommand():
     print("Possible commands")
     print(":h ------------------------------------------------------------------------------> show help")
-    print(":l <filename> -------------------------------------------------------------------> load file")
-    print(":w -------------------------------------------------------------> write file without closing")
-    print(":wq ---------------------------------------------------------------> write file with closing")
+    print(":l (json/yaml/xml) <filename> ---------------------------------------------------> load file")
+    print(":w (json/yaml/xml) <filename>-----------------------------------> write file without closing")
+    print(":wq (json/yaml/xml) <filename>-------------------------------------> write file with closing")
     print(":q --------------------------------------------------------------> close file without safing")
     print(":a (switch|router|hub) <hn> <mac> <ip> <mask> <sn> <nump> -----------------------> add a row")
     print(":m <hostname> [-sn=<val>] [-ip=<val>] [-mask=<val>] [-sn=<val>] [name=<val>] -> modify a row")
@@ -396,17 +410,17 @@ def process_input(inputval):
         print("input:", splittedOnSpace)
         print("--------------------------------------------------------------------------------------------------------------------")
         if command == ":l":
-            if len(splittedOnSpace) >= 2:
+            if len(splittedOnSpace) >= 3:
                 process_loadCommand(splittedOnSpace)
             else:
                 print("Wrong parameters for Load-Command.")
         elif command == ":w":
-            if len(splittedOnSpace) >= 2:
+            if len(splittedOnSpace) >= 3:
                 process_writeCommand(splittedOnSpace)
             else:
                 print("Wrong parameters for Write-Command")
         elif command == ":wq":
-            if len(splittedOnSpace) >= 2:
+            if len(splittedOnSpace) >= 3:
                 if process_writeCommand(splittedOnSpace):
                     process_quitCommand()
             else:

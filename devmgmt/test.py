@@ -1,5 +1,1 @@
-import sys
-print("Python version")
-print (sys.version)
-print("Version info.")
-print (sys.version_info)
+print("xml" not in ["json", "yaml", "xml"])
