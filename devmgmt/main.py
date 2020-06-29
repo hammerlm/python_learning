@@ -68,8 +68,6 @@ def evaluate_writeInput(inputList):
             return False
         if inputList[1] not in ["json", "yaml", "xml"]:
             return False
-        else:
-            return False
     return True
 
 def evaluate_addInput(inputList):
