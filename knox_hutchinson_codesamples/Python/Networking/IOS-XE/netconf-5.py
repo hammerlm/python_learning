@@ -6,7 +6,7 @@ from router_info import router
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
 
-netconf_filter = open("C:/dev/Python/Demos/IOS-XE/netconf-filter.xml").read()
+netconf_filter = open("C:/Users/hammermi/Documents/work/Activities/Knowledge/SW-DEV/Python/python_learning/knox_hutchinson_codesamples/Python/Networking/IOS-XE/netconf-filter.xml").read()
 
 with manager.connect(host=router["host"], port=router["port"], username=router["username"], password=router["password"], hostkey_verify=False) as m:
     for capability in m.server_capabilities:

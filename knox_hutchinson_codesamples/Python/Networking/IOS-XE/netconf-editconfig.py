@@ -8,5 +8,6 @@ netconf_config = config_template.format(
     interface_name="GigabitEthernet2", interface_desc="daniyal")
 
 with manager.connect(host=router["host"], port=router["port"], username=router["username"], password=router["password"], hostkey_verify=False) as m:
+    #target="running" in this case means: make the changes directly to the RUNNING-CONFIG
     device_reply = m.edit_config(netconf_config, target="running")
     print(device_reply)

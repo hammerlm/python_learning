@@ -1,4 +1,4 @@
-router = {"host": "ios-xe-mgmt-latest.cisco.com",
+router = {"host": "192.168.8.220",
           "port": "10000",
-          "username": "root",
-          "password": "D_Vay!_10&"}
+          "username": "nocuser",
+          "password": "cisco"}

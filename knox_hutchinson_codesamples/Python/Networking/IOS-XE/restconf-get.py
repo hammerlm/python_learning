@@ -1,7 +1,7 @@
 import requests
 import json
 
-# set up connection parameters in a dictionary
+# set up connection parameters in a dictionary - only thing different to netconf is the portnumber.
 router = {"ip": "ios-xe-mgmt.cisco.com", "port": "9443",
           "user": "root", "password": "D_Vay!_10&"}
 

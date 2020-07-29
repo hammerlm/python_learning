@@ -5,8 +5,8 @@ import xmltodict
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
 
-router = {"host": "ios-xe-mgmt-latest.cisco.com", "port": "10000",
-          "username": "developer", "password": "C1sco12345"}
+router = {"host": "192.168.8.220", "port": "830",
+          "username": "nocuser", "password": "cisco"}
 print(router["host"])
 print(router["port"])
 print(router["username"])
@@ -16,12 +16,12 @@ netconf_filter = """
  <filter>
   <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
     <interface>
-      <name>GigabitEthernet2</name>
+      <name>GigabitEthernet1</name>
     </interface>
   </interfaces>
   <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
     <interface>
-      <name>GigabitEthernet2</name>
+      <name>GigabitEthernet1</name>
     </interface>
   </interfaces-state>
 </filter>
