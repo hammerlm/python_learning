@@ -2,7 +2,7 @@ import requests
 import json
 
 # set up connection parameters in a dictionary - only thing different to netconf is the portnumber.
-router = {"ip": "192.168.8.220", "port": "9443",
+router = {"ip": "192.168.8.220", "port": "443",
           "user": "nocuser", "password": "cisco"}
 
 # set REST API headers
@@ -22,3 +22,4 @@ print(api_data["Cisco-IOS-XE-interfaces-oper:interface"]["description"])
 print("/" * 50)
 if api_data["Cisco-IOS-XE-interfaces-oper:interface"]["admin-status"] == 'if-state-up':
     print('Interface is up')
+    print('in-octets = ' + api_data["Cisco-IOS-XE-interfaces-oper:interface"]["statistics"]["in-octets"])
