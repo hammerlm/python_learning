@@ -7,7 +7,7 @@ Modify these please
 switchuser='admin'
 switchpassword='cisco'
 
-url='http://192.168.8.221/ins'
+url='https://192.168.8.221/ins'
 myheaders={'content-type':'application/json'}
 payload={
   "ins_api": {
@@ -19,5 +19,11 @@ payload={
     "output_format": "json"
   }
 }
-response = requests.post(url,data=json.dumps(payload), headers=myheaders,auth=(switchuser,switchpassword)).json()
+response = requests.post(
+    url,
+    data=json.dumps(payload), 
+    headers=myheaders,
+    auth=(switchuser,switchpassword),
+    verify=False
+).json()
 print(json.dumps(response, indent=2, sort_keys=True))
