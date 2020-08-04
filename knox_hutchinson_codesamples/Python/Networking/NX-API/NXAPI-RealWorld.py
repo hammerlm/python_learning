@@ -3,10 +3,10 @@ import json
 import re
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
+# setup user+pw-variable
 switchuser = 'cisco'
 switchpassword = 'cisco'
-
+# read cdp-neighbors on nx-device
 url = 'https://172.16.1.68/ins'
 myheaders = {'content-type': 'application/json'}
 payload = {
@@ -40,6 +40,7 @@ cookies = {}
 cookies['APIC-Cookie'] = token
 headers = {"content-type": "application/json"}
 
+# set int-descriptions on interfaces based on cdp-neighboroutput
 while counter < nei_count:
     hostname = response['ins_api']['outputs']['output']['body'][
         'TABLE_cdp_neighbor_brief_info']['ROW_cdp_neighbor_brief_info'][counter]['device_id']
