@@ -6,7 +6,7 @@ from pprint import pprint
 
 
 # CREATE Connection Object
-x_cisco_meraki_api_key = '6bec40cf957de430a6f1f2baa056b99a4fac9ea0'  # Demo DevNet Sandbox
+x_cisco_meraki_api_key = '614438ffec2468d44a7ef1bd58dfecf8f9847c3a'  # Demo DevNet Sandbox
 meraki = MerakiSdkClient(x_cisco_meraki_api_key)
 
 # Get Orgs
@@ -28,13 +28,12 @@ pprint(networks)
 
 # Set NetworkId
 for network in networks:
-    if network['name'] == "DevNet Always On Read Only":
+    if network['name'] == "DevNet Sandbox ALWAYS ON":
         netId = network['id']
 # print(netId)
 
 # GET VLANS
 vlans = meraki.vlans.get_network_vlans(netId)
-
 
 vlan = vlans[0]
 # CHANGE VLAN NAME HERE

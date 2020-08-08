@@ -4,7 +4,7 @@ import json
 url = "https://dashboard.meraki.com/api/v0/organizations"
 
 headers = {
-    'X-Cisco-Meraki-API-Key': "6bec40cf957de430a6f1f2baa056b99a4fac9ea0",
+    'X-Cisco-Meraki-API-Key': "614438ffec2468d44a7ef1bd58dfecf8f9847c3a",
     'User-Agent': "PostmanRuntime/7.16.3",
     'Accept': "*/*",
     'Cache-Control': "no-cache",
@@ -26,7 +26,7 @@ for response_org in response:
 net_url = f'{url}/{orgId}/networks'
 
 networks = requests.get(net_url, headers=headers).json()
-print(networks)
+print(json.dumps(networks, indent=2, sort_keys=True))
 for network in networks:
     if network['name'] == 'DNSMB3':
         netId = network['id']
