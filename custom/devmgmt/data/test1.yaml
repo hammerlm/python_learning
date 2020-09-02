@@ -1,0 +1,304 @@
+- hostname: sa-at-vih-blabla1
+  id: 1
+  ip_subnetmask: 255.255.255.0
+  man_ip: 192.168.8.2
+  numports: 24
+  ports:
+    pt0:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt1:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt10:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt11:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt12:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt13:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt14:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt15:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt16:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt17:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt18:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt19:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt2:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt20:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt21:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt22:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt23:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt3:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt4:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt5:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt6:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt7:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt8:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt9:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+  snum: sn:12347
+  sys_mac: 0000.0000.0002
+- hostname: sa-at-vih-01a-101
+  id: 2
+  ip_subnetmask: 255.255.255.0
+  man_ip: 192.168.8.20
+  numports: 48
+  ports:
+    pt0:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt1:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt10:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt11:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt12:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt13:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt14:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt15:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt16:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt17:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt18:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt19:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt2:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt20:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt21:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt22:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt23:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt24:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt25:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt26:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt27:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt28:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt29:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt3:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt30:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt31:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt32:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt33:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt34:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt35:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt36:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt37:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt38:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt39:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt4:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt40:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt41:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt42:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt43:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt44:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt45:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt46:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt47:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt5:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt6:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt7:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt8:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+    pt9:
+      is_trunk: false
+      mac: 0000.0000.0000
+      native_vlan: 1
+  snum: sn:0001
+  sys_mac: 0000.0000.0001
