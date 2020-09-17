@@ -5,7 +5,7 @@ import json
 url_base = 'http://10.10.21.32:8080/api'
 auth = ("admin", "admin")
 
-# Other useful headers
+# Other useful headers (include all for CRUD)
 
 #    'application/vnd.yang.api+json',
 #    'application/vnd.yang.datastore+json',
